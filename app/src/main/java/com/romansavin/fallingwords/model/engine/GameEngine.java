@@ -1,6 +1,10 @@
-package com.romansavin.fallingwords.model;
+package com.romansavin.fallingwords.model.engine;
 
 import android.support.annotation.NonNull;
+
+import com.romansavin.fallingwords.model.LevelInfo;
+import com.romansavin.fallingwords.model.LevelResult;
+import com.romansavin.fallingwords.model.Word;
 
 import java.util.List;
 

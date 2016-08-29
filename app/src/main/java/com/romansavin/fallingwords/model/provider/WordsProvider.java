@@ -1,4 +1,6 @@
-package com.romansavin.fallingwords.model;
+package com.romansavin.fallingwords.model.provider;
+
+import com.romansavin.fallingwords.model.Word;
 
 import java.util.List;
 
