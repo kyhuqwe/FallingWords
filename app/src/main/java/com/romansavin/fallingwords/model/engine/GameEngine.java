@@ -16,17 +16,17 @@ import rx.Observable;
  */
 public interface GameEngine {
 
-  void startNewGame(@NonNull final List<Word> words) throws IllegalArgumentException;
+  @NonNull LevelInfo startNewGame(@NonNull final List<Word> words) throws IllegalArgumentException;
 
   void finishGame();
 
   void startNewLevel();
 
-  LevelResult answer(final boolean isYesAnswer);
+  @NonNull LevelResult answer(final boolean isYesAnswer);
 
-  Observable<Integer> getDropPercentageObservable();
+  @NonNull Observable<Integer> getDropPercentageObservable();
 
-  Observable<Integer> getTimeCounterObservable();
+  @NonNull Observable<Integer> getTimeCounterObservable();
 
-  LevelInfo getLevelInfo();
+  @NonNull LevelInfo getLevelInfo();
 }

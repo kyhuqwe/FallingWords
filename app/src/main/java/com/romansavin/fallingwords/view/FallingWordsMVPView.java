@@ -31,9 +31,8 @@ public interface FallingWordsMVPView {
 
   void showFallingTimeCounter(final int count);
 
-  void showResult(final boolean isWin, @NonNull final String rightTranslation);
+  void showResult(final boolean isWin, final boolean isGameOver, final int score,
+                  @NonNull final String rightTranslation);
 
-  void showGameOverInfo(final int score);
-
-  void finish();
+  void finishGame();
 }

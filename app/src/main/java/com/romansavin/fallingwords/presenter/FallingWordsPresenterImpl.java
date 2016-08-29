@@ -66,8 +66,7 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
         })
         .doOnSuccess(words -> {
           view.hideProgress();
-          gameEngine.startNewGame(words);
-          final LevelInfo levelInfo = gameEngine.getLevelInfo();
+          final LevelInfo levelInfo = gameEngine.startNewGame(words);
           view.showLevelStartingInfo(levelInfo.level(), levelInfo.duration(), levelInfo.score(), levelInfo.health());
         })
         .subscribe();
@@ -81,7 +80,7 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
 
   @Override public void finishGame() {
     gameEngine.finishGame();
-    view.finish();
+    view.finishGame();
   }
 
   @Override public void chooseAnswerYes() {
@@ -96,10 +95,10 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
     handleResult(result);
   }
 
-  Observable<Integer> startLevelObservable() {
-    return interval(1, TimeUnit.SECONDS)
+  protected Observable<Integer> startLevelObservable() {
+    return interval(0, 1, TimeUnit.SECONDS)
         .map(value -> START_LEVEL_SECONDS - value.intValue())
-        .take(START_LEVEL_SECONDS)
+        .take(START_LEVEL_SECONDS + 1)
         .observeOn(mainScheduler)
         .doOnNext(view::showStartGameCounter)
         .doOnCompleted(() -> {
@@ -115,15 +114,17 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
     dropPercentageSubscription = gameEngine.getDropPercentageObservable()
         .observeOn(mainScheduler)
         .doOnNext(view::updateFallingWordPosition)
-        .doOnCompleted(() -> {
-          view.hideGameBoard();
-          view.showResult(false, gameEngine.getLevelInfo().rightTranslation());
-        })
         .subscribe();
 
     gameTimeCounterSubscription = gameEngine.getTimeCounterObservable()
         .observeOn(mainScheduler)
         .doOnNext(view::showFallingTimeCounter)
+        .doOnCompleted(() -> {
+          view.hideGameBoard();
+          final LevelInfo levelInfo = gameEngine.getLevelInfo();
+          final LevelResult levelResult = gameEngine.answer(!levelInfo.rightTranslation().equals(levelInfo.assumedTranslation()));
+          handleResult(levelResult);
+        })
         .subscribe();
   }
 
@@ -137,11 +138,9 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
   }
 
   private void handleResult(@NonNull final LevelResult result) {
-    view.showResult(result.isWin(), result.rightTranslation());
+    view.showResult(result.isWin(), result.isGameOver(), result.score(), result.rightTranslation());
 
-    if (result.isGameOver()) {
-      view.showGameOverInfo(result.score());
-    } else {
+    if (!result.isGameOver()) {
       final LevelInfo levelInfo = gameEngine.getLevelInfo();
       view.showLevelStartingInfo(levelInfo.level(), levelInfo.duration(), levelInfo.score(), levelInfo.health());
     }

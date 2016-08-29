@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FallingWords</string>
+
+    <string name="load_words_error">Can\'t load words.</string>
+
+    <string name="win_result_info">You win!\nRight translation is \"%s\"</string>
+    <string name="lose_result_info">Sorry, you lose.\nRight translation is \"%s\"</string>
+
+    <string name="game_over_win_info">You win! Your score is %d</string>
+    <string name="game_over_lose_info">Game over your score is %d</string>
+    <string name="start_btn">Start</string>
+    <string name="finish_game_btn">Finish Game</string>
+
+    <string name="level_info_fmt">Level: %1$d\nDuration: %2$d\nScore: %3$d\nHealth: %4$d</string>
 </resources>

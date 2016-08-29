@@ -52,7 +52,7 @@ public class GameEngineImpl implements GameEngine {
   @Nullable private String assumedTranslation;
   @Nullable private String rightTranslation;
 
-  @Override public void startNewGame(@NonNull final List<Word> words) throws IllegalArgumentException {
+  @NonNull @Override public LevelInfo startNewGame(@NonNull final List<Word> words) throws IllegalArgumentException {
     if (words.isEmpty()) {
       throw new IllegalArgumentException("Words list can't be empty");
     }
@@ -62,6 +62,8 @@ public class GameEngineImpl implements GameEngine {
     score = MIN_SCORE;
     health = MAX_HEALTH;
     duration = getDurationByLevel();
+
+    return LevelInfo.create(level, duration, health, score, "" , "", "");
   }
 
   @Override public void finishGame() {
@@ -98,7 +100,7 @@ public class GameEngineImpl implements GameEngine {
     usedWords.add(randomWord);
   }
 
-  @Override public LevelResult answer(final boolean isYesAnswer) {
+  @NonNull @Override public LevelResult answer(final boolean isYesAnswer) {
     if (assumedTranslation == null) {
       throw new IllegalStateException("Assumed translation is null");
     }
@@ -117,7 +119,7 @@ public class GameEngineImpl implements GameEngine {
     return LevelResult.create(isWin, isGameOver, score, rightTranslation);
   }
 
-  @Override public Observable<Integer> getDropPercentageObservable() {
+  @NonNull @Override public Observable<Integer> getDropPercentageObservable() {
     final int maxStepsCount = duration * MS_IN_SECOND / UPDATE_DROP_PERCENTAGE_MS;
     final float dropVelocity = 100 / (float) maxStepsCount; // Velocity in Percentages per step
     return interval(UPDATE_DROP_PERCENTAGE_MS, TimeUnit.MILLISECONDS)
@@ -126,13 +128,13 @@ public class GameEngineImpl implements GameEngine {
         .take(maxStepsCount + 1);
   }
 
-  @Override public Observable<Integer> getTimeCounterObservable() {
+  @NonNull @Override public Observable<Integer> getTimeCounterObservable() {
     return interval(1, TimeUnit.SECONDS)
         .map(value -> duration - value.intValue())
         .take(duration + 1);
   }
 
-  @Override public LevelInfo getLevelInfo() {
+  @NonNull @Override public LevelInfo getLevelInfo() {
     if (assumedTranslation == null) {
       throw new IllegalStateException("Assumed translation is null");
     }

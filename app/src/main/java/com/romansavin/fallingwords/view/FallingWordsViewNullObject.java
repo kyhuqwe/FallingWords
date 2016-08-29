@@ -126,29 +126,21 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     }
   }
 
-  @Override public void showResult(final boolean isWin, @NonNull final String rightTranslation) {
+  @Override public void showResult(final boolean isWin, final boolean isGameOver, final int score,
+                                   @NonNull final String rightTranslation) {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.showResult(isWin, rightTranslation);
+        view.showResult(isWin, isGameOver, score, rightTranslation);
       }
     }
   }
 
-  @Override public void showGameOverInfo(final int score) {
+  @Override public void finishGame() {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.showGameOverInfo(score);
-      }
-    }
-  }
-
-  @Override public void finish() {
-    if (viewWeakRef != null) {
-      final FallingWordsMVPView view = viewWeakRef.get();
-      if (view != null) {
-        view.finish();
+        view.finishGame();
       }
     }
   }

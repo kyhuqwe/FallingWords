@@ -199,47 +199,32 @@ public class FallingWordsViewNullObjectTest {
   }
 
   @Test public void showResult_initializedWithView() {
-    initializedWithView.showResult(true, TRANSLATION);
-    verify(view).showResult(true, TRANSLATION);
+    initializedWithView.showResult(true, true, 0, TRANSLATION);
+    verify(view).showResult(true, true, 0, TRANSLATION);
   }
 
   @Test public void showResult_initializedWithNull() {
-    initializedWithNull.showResult(true, TRANSLATION);
-    verify(view, never()).showResult(true, TRANSLATION);
+    initializedWithNull.showResult(true, true, 0, TRANSLATION);
+    verify(view, never()).showResult(true, true, 0, TRANSLATION);
   }
 
   @Test public void showResult_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.showResult(true, TRANSLATION);
-    verify(view, never()).showResult(true, TRANSLATION);
+    initializedWithDefaultConstructor.showResult(true, true, 0, TRANSLATION);
+    verify(view, never()).showResult(true, true, 0, TRANSLATION);
   }
 
-  @Test public void showGameOverInfo_initializedWithView() {
-    initializedWithView.showGameOverInfo(0);
-    verify(view).showGameOverInfo(0);
+  @Test public void finishGame_initializedWithView() {
+    initializedWithView.finishGame();
+    verify(view).finishGame();
   }
 
-  @Test public void showGameOverInfo_initializedWithNull() {
-    initializedWithNull.showGameOverInfo(0);
-    verify(view, never()).showGameOverInfo(0);
+  @Test public void finishGame_initializedWithNull() {
+    initializedWithNull.finishGame();
+    verify(view, never()).finishGame();
   }
 
-  @Test public void showGameOverInfo_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.showGameOverInfo(0);
-    verify(view, never()).showGameOverInfo(0);
-  }
-
-  @Test public void finish_initializedWithView() {
-    initializedWithView.finish();
-    verify(view).finish();
-  }
-
-  @Test public void finish_initializedWithNull() {
-    initializedWithNull.finish();
-    verify(view, never()).finish();
-  }
-
-  @Test public void finish_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.finish();
-    verify(view, never()).finish();
+  @Test public void finishGame_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.finishGame();
+    verify(view, never()).finishGame();
   }
 }

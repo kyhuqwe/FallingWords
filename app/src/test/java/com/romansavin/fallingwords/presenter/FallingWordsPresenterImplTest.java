@@ -80,6 +80,13 @@ public class FallingWordsPresenterImplTest {
                 RIGHT_TRANSLATION
             )
     );
+    when(gameEngine.startNewGame(words)).then(invocation -> LevelInfo.create(
+        MIN_LEVEL,
+        MAX_DURATION_SECONDS - MIN_LEVEL,
+        MAX_HEALTH,
+        MIN_SCORE,
+        "", "", ""
+    ));
 
     mainScheduler = Schedulers.from(Runnable::run);
     workerScheduler = Schedulers.from(Runnable::run);
@@ -127,6 +134,7 @@ public class FallingWordsPresenterImplTest {
     verify(view).showStartGameCounter(3);
     verify(view).showStartGameCounter(2);
     verify(view).showStartGameCounter(1);
+    verify(view).showStartGameCounter(0);
     verify(view).hideStartGameCounter();
     verify(view).showGameBoard(MIN_LEVEL, MIN_SCORE, MAX_HEALTH, WORD, ASSUMED_TRANSLATION);
   }
@@ -135,7 +143,7 @@ public class FallingWordsPresenterImplTest {
     presenter.finishGame();
 
     verify(gameEngine).finishGame();
-    verify(view).finish();
+    verify(view).finishGame();
   }
 
   @Test public void chooseAnswerYes() {
@@ -143,7 +151,7 @@ public class FallingWordsPresenterImplTest {
     presenter.chooseAnswerYes();
 
     verify(gameEngine).answer(true);
-    verify(view).showResult(false, RIGHT_TRANSLATION);
+    verify(view).showResult(false, false, MIN_SCORE, RIGHT_TRANSLATION);
     verify(view).showLevelStartingInfo(MIN_LEVEL, MAX_DURATION_SECONDS - MIN_LEVEL, MIN_SCORE, MAX_HEALTH);
   }
 
@@ -152,7 +160,7 @@ public class FallingWordsPresenterImplTest {
     presenter.chooseAnswerNo();
 
     verify(gameEngine).answer(false);
-    verify(view).showResult(true, RIGHT_TRANSLATION);
+    verify(view).showResult(true, false, WIN_SCORE, RIGHT_TRANSLATION);
     verify(view).showLevelStartingInfo(MIN_LEVEL, MAX_DURATION_SECONDS - MIN_LEVEL, MIN_SCORE, MAX_HEALTH);
   }
 
@@ -161,8 +169,7 @@ public class FallingWordsPresenterImplTest {
     presenter.chooseAnswerYes();
 
     verify(gameEngine).answer(true);
-    verify(view).showResult(false, RIGHT_TRANSLATION);
-    verify(view).showGameOverInfo(MIN_SCORE);
+    verify(view).showResult(false, true, MIN_SCORE, RIGHT_TRANSLATION);
   }
 
   @Test public void chooseAnswerNo_gameOver() {
@@ -170,7 +177,6 @@ public class FallingWordsPresenterImplTest {
     presenter.chooseAnswerNo();
 
     verify(gameEngine).answer(false);
-    verify(view).showResult(true, RIGHT_TRANSLATION);
-    verify(view).showGameOverInfo(WIN_SCORE);
+    verify(view).showResult(true, true, WIN_SCORE, RIGHT_TRANSLATION);
   }
 }
