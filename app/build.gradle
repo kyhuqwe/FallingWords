@@ -15,6 +15,8 @@ android {
     targetSdkVersion versions.targetSdk
     versionCode versions.code
     versionName versions.name
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
   buildTypes {
@@ -85,6 +87,10 @@ dependencies {
   testCompile libraries.junit
   testCompile libraries.mockitoCore
   testCompile libraries.assertJ
+
+  androidTestCompile(libraries.espresso, {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
 }
 
 configurations.all {

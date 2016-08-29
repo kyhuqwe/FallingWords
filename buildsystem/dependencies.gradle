@@ -31,6 +31,7 @@ ext.versions = [
         junit                        : '4.12',
         mockito                      : '2.0.111-beta',
         assertJ                      : '3.5.2',
+        espresso                     : '2.2.2',
 ]
 
 ext.gradlePlugins = [
@@ -69,4 +70,5 @@ ext.libraries = [
         junit                   : "junit:junit:$versions.junit",
         mockitoCore             : "org.mockito:mockito-core:$versions.mockito",
         assertJ                 : "org.assertj:assertj-core:$versions.assertJ",
+        espresso                : "com.android.support.test.espresso:espresso-core:$versions.espresso",
 ]

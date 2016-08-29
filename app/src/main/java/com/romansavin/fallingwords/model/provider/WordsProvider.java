@@ -1,5 +1,7 @@
 package com.romansavin.fallingwords.model.provider;
 
+import android.support.annotation.NonNull;
+
 import com.romansavin.fallingwords.model.Word;
 
 import java.util.List;
@@ -12,5 +14,5 @@ import rx.Single;
  */
 public interface WordsProvider {
 
-  Single<List<Word>> getWords();
+  @NonNull Single<List<Word>> getWords();
 }
