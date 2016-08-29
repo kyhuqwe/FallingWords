@@ -6,9 +6,13 @@ package com.romansavin.fallingwords.presenter;
  */
 public interface FallingWordsPresenter {
 
-  void startGame();
+  void loadWords();
 
-  void chooseAnswerRight();
+  void startLevel();
 
-  void chooseAnswerWrong();
+  void finishGame();
+
+  void chooseAnswerYes();
+
+  void chooseAnswerNo();
 }

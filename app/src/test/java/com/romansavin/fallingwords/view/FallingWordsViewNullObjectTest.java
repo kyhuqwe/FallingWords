@@ -11,12 +11,11 @@ import static org.mockito.Mockito.verify;
  * @author Roman Savin
  * @since 28.08.2016.
  */
-
 @SuppressWarnings("ConstantConditions")
 public class FallingWordsViewNullObjectTest {
 
   private static final String WORD = "WORD";
-  
+
   private static final String TRANSLATION = "TRANSLATION";
 
   private FallingWordsViewNullObject initializedWithView;
@@ -34,64 +33,64 @@ public class FallingWordsViewNullObjectTest {
     initializedWithDefaultConstructor = new FallingWordsViewNullObject();
   }
 
-  @Test public void showStartButton_initializedWithView() {
-    initializedWithView.showStartButton();
-    verify(view).showStartButton();
+  @Test public void showProgress_initializedWithView() {
+    initializedWithView.showProgress();
+    verify(view).showProgress();
   }
 
-  @Test public void showStartButton_initializedWithNull() {
-    initializedWithNull.showStartButton();
-    verify(view, never()).showStartButton();
+  @Test public void showProgress_initializedWithNull() {
+    initializedWithNull.showProgress();
+    verify(view, never()).showProgress();
   }
 
-  @Test public void showStartButton_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.showStartButton();
-    verify(view, never()).showStartButton();
+  @Test public void showProgress_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showProgress();
+    verify(view, never()).showProgress();
   }
 
-  @Test public void hideStartButton_initializedWithView() {
-    initializedWithView.hideStartButton();
-    verify(view).hideStartButton();
+  @Test public void hideProgress_initializedWithView() {
+    initializedWithView.hideProgress();
+    verify(view).hideProgress();
   }
 
-  @Test public void hideStartButton_initializedWithNull() {
-    initializedWithNull.hideStartButton();
-    verify(view, never()).hideStartButton();
+  @Test public void hideProgress_initializedWithNull() {
+    initializedWithNull.hideProgress();
+    verify(view, never()).hideProgress();
   }
 
-  @Test public void hideStartButton_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.hideStartButton();
-    verify(view, never()).hideStartButton();
+  @Test public void hideProgress_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.hideProgress();
+    verify(view, never()).hideProgress();
   }
 
-  @Test public void blurGameSpace_initializedWithView() {
-    initializedWithView.blurGameSpace();
-    verify(view).blurGameSpace();
+  @Test public void showLevelStartingInfo_initializedWithView() {
+    initializedWithView.showLevelStartingInfo(1, 1, 1, 1);
+    verify(view).showLevelStartingInfo(1, 1, 1, 1);
   }
 
-  @Test public void blurGameSpace_initializedWithNull() {
-    initializedWithNull.blurGameSpace();
-    verify(view, never()).blurGameSpace();
+  @Test public void showLevelStartingInfo_initializedWithNull() {
+    initializedWithNull.showLevelStartingInfo(1, 1, 1, 1);
+    verify(view, never()).showLevelStartingInfo(1, 1, 1, 1);
   }
 
-  @Test public void blurGameSpace_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.blurGameSpace();
-    verify(view, never()).blurGameSpace();
+  @Test public void showLevelStartingInfo_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showLevelStartingInfo(1, 1, 1, 1);
+    verify(view, never()).showLevelStartingInfo(1, 1, 1, 1);
   }
 
-  @Test public void showGameSpace_initializedWithView() {
-    initializedWithView.showGameSpace();
-    verify(view).showGameSpace();
+  @Test public void hideLevelStartingInfo_initializedWithView() {
+    initializedWithView.hideLevelStartingInfo();
+    verify(view).hideLevelStartingInfo();
   }
 
-  @Test public void showGameSpace_initializedWithNull() {
-    initializedWithNull.showGameSpace();
-    verify(view, never()).showGameSpace();
+  @Test public void hideLevelStartingInfo_initializedWithNull() {
+    initializedWithNull.hideLevelStartingInfo();
+    verify(view, never()).hideLevelStartingInfo();
   }
 
-  @Test public void showGameSpace_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.showGameSpace();
-    verify(view, never()).showGameSpace();
+  @Test public void hideLevelStartingInfo_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.hideLevelStartingInfo();
+    verify(view, never()).hideLevelStartingInfo();
   }
 
   @Test public void showStartGameCounter_initializedWithView() {
@@ -124,19 +123,34 @@ public class FallingWordsViewNullObjectTest {
     verify(view, never()).hideStartGameCounter();
   }
 
-  @Test public void initGameLevel_initializedWithView() {
-    initializedWithView.initGameLevel(1, WORD, TRANSLATION);
-    verify(view).initGameLevel(1, WORD, TRANSLATION);
+  @Test public void showGameBoard_initializedWithView() {
+    initializedWithView.showGameBoard(1, 1, 1, WORD, TRANSLATION);
+    verify(view).showGameBoard(1, 1, 1, WORD, TRANSLATION);
   }
 
-  @Test public void initGameLevel_initializedWithNull() {
-    initializedWithNull.initGameLevel(1, WORD, TRANSLATION);
-    verify(view, never()).initGameLevel(1, WORD, TRANSLATION);
+  @Test public void showGameBoard_initializedWithNull() {
+    initializedWithNull.showGameBoard(1, 1, 1, WORD, TRANSLATION);
+    verify(view, never()).showGameBoard(1, 1, 1, WORD, TRANSLATION);
   }
 
-  @Test public void initGameLevel_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.initGameLevel(1, WORD, TRANSLATION);
-    verify(view, never()).initGameLevel(1, WORD, TRANSLATION);
+  @Test public void showGameBoard_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showGameBoard(1, 1, 1, WORD, TRANSLATION);
+    verify(view, never()).showGameBoard(1, 1, 1, WORD, TRANSLATION);
+  }
+
+  @Test public void hideGameBoard_initializedWithView() {
+    initializedWithView.hideGameBoard();
+    verify(view).hideGameBoard();
+  }
+
+  @Test public void hideGameBoard_initializedWithNull() {
+    initializedWithNull.hideGameBoard();
+    verify(view, never()).hideGameBoard();
+  }
+
+  @Test public void hideGameBoard_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.hideGameBoard();
+    verify(view, never()).hideGameBoard();
   }
 
   @Test public void updateFallingWordPosition_initializedWithView() {
@@ -154,19 +168,19 @@ public class FallingWordsViewNullObjectTest {
     verify(view, never()).updateFallingWordPosition(1);
   }
 
-  @Test public void showFallingCounter_initializedWithView() {
-    initializedWithView.showFallingCounter(1);
-    verify(view).showFallingCounter(1);
+  @Test public void showFallingTimeCounter_initializedWithView() {
+    initializedWithView.showFallingTimeCounter(1);
+    verify(view).showFallingTimeCounter(1);
   }
 
-  @Test public void showFallingCounter_initializedWithNull() {
-    initializedWithNull.showFallingCounter(1);
-    verify(view, never()).showFallingCounter(1);
+  @Test public void showFallingTimeCounter_initializedWithNull() {
+    initializedWithNull.showFallingTimeCounter(1);
+    verify(view, never()).showFallingTimeCounter(1);
   }
 
-  @Test public void showFallingCounter_initializedWithDefaultConstructor() {
-    initializedWithDefaultConstructor.showFallingCounter(1);
-    verify(view, never()).showFallingCounter(1);
+  @Test public void showFallingTimeCounter_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showFallingTimeCounter(1);
+    verify(view, never()).showFallingTimeCounter(1);
   }
 
   @Test public void showResult_initializedWithView() {

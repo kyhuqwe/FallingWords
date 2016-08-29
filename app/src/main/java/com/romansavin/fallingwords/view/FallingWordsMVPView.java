@@ -8,23 +8,26 @@ import android.support.annotation.NonNull;
  */
 public interface FallingWordsMVPView {
 
-  void showStartButton();
+  void showProgress();
 
-  void hideStartButton();
+  void hideProgress();
 
-  void blurGameSpace();
+  void showLevelStartingInfo(final int level, final int duration, final int score, final int health);
 
-  void showGameSpace();
+  void hideLevelStartingInfo();
 
   void showStartGameCounter(final int count);
 
   void hideStartGameCounter();
 
-  void initGameLevel(final int level, @NonNull final String word, @NonNull final String translation);
+  void showGameBoard(final int level, final int score, final int health,
+                     @NonNull final String word, @NonNull final String assumedTranslation);
+
+  void hideGameBoard();
 
   void updateFallingWordPosition(final int dropPercentage);
 
-  void showFallingCounter(final int count);
+  void showFallingTimeCounter(final int count);
 
   void showResult(final boolean isWin, @NonNull final String rightTranslation);
 }

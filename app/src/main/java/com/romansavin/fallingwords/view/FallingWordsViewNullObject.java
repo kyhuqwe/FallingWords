@@ -9,7 +9,6 @@ import java.lang.ref.WeakReference;
  * @author Roman Savin
  * @since 28.08.2016.
  */
-
 public class FallingWordsViewNullObject implements FallingWordsMVPView {
 
   @Nullable private final WeakReference<FallingWordsMVPView> viewWeakRef;
@@ -22,38 +21,38 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     this.viewWeakRef = new WeakReference<>(view);
   }
 
-  @Override public void showStartButton() {
+  @Override public void showProgress() {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.showStartButton();
+        view.showProgress();
       }
     }
   }
 
-  @Override public void hideStartButton() {
+  @Override public void hideProgress() {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.hideStartButton();
+        view.hideProgress();
       }
     }
   }
 
-  @Override public void blurGameSpace() {
+  @Override public void showLevelStartingInfo(final int level, final int duration, final int score, final int health) {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.blurGameSpace();
+        view.showLevelStartingInfo(level, duration, score, health);
       }
     }
   }
 
-  @Override public void showGameSpace() {
+  @Override public void hideLevelStartingInfo() {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.showGameSpace();
+        view.hideLevelStartingInfo();
       }
     }
   }
@@ -76,11 +75,26 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     }
   }
 
-  @Override public void initGameLevel(final int level, @NonNull final String word, @NonNull final String translation) {
+  @Override public void showGameBoard(
+      final int level,
+      final int score,
+      final int health,
+      @NonNull final String word,
+      @NonNull final String assumedTranslation
+  ) {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.initGameLevel(level, word, translation);
+        view.showGameBoard(level, score, health, word, assumedTranslation);
+      }
+    }
+  }
+
+  @Override public void hideGameBoard() {
+    if (viewWeakRef != null) {
+      final FallingWordsMVPView view = viewWeakRef.get();
+      if (view != null) {
+        view.hideGameBoard();
       }
     }
   }
@@ -94,11 +108,11 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     }
   }
 
-  @Override public void showFallingCounter(final int count) {
+  @Override public void showFallingTimeCounter(final int count) {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
-        view.showFallingCounter(count);
+        view.showFallingTimeCounter(count);
       }
     }
   }
