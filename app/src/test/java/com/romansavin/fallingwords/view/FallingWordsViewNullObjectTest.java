@@ -63,6 +63,21 @@ public class FallingWordsViewNullObjectTest {
     verify(view, never()).hideProgress();
   }
 
+  @Test public void showLoadWordsError_initializedWithView() {
+    initializedWithView.showLoadWordsError();
+    verify(view).showLoadWordsError();
+  }
+
+  @Test public void showLoadWordsError_initializedWithNull() {
+    initializedWithNull.showLoadWordsError();
+    verify(view, never()).showLoadWordsError();
+  }
+
+  @Test public void showLoadWordsError_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showLoadWordsError();
+    verify(view, never()).showLoadWordsError();
+  }
+
   @Test public void showLevelStartingInfo_initializedWithView() {
     initializedWithView.showLevelStartingInfo(1, 1, 1, 1);
     verify(view).showLevelStartingInfo(1, 1, 1, 1);
@@ -196,5 +211,20 @@ public class FallingWordsViewNullObjectTest {
   @Test public void showResult_initializedWithDefaultConstructor() {
     initializedWithDefaultConstructor.showResult(true, TRANSLATION);
     verify(view, never()).showResult(true, TRANSLATION);
+  }
+
+  @Test public void finish_initializedWithView() {
+    initializedWithView.finish();
+    verify(view).finish();
+  }
+
+  @Test public void finish_initializedWithNull() {
+    initializedWithNull.finish();
+    verify(view, never()).finish();
+  }
+
+  @Test public void finish_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.finish();
+    verify(view, never()).finish();
   }
 }

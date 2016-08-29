@@ -39,6 +39,15 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     }
   }
 
+  @Override public void showLoadWordsError() {
+    if (viewWeakRef != null) {
+      final FallingWordsMVPView view = viewWeakRef.get();
+      if (view != null) {
+        view.showLoadWordsError();
+      }
+    }
+  }
+
   @Override public void showLevelStartingInfo(final int level, final int duration, final int score, final int health) {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();
@@ -122,6 +131,15 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
       final FallingWordsMVPView view = viewWeakRef.get();
       if (view != null) {
         view.showResult(isWin, rightTranslation);
+      }
+    }
+  }
+
+  @Override public void finish() {
+    if (viewWeakRef != null) {
+      final FallingWordsMVPView view = viewWeakRef.get();
+      if (view != null) {
+        view.finish();
       }
     }
   }

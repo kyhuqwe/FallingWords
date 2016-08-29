@@ -12,6 +12,8 @@ public interface FallingWordsMVPView {
 
   void hideProgress();
 
+  void showLoadWordsError();
+
   void showLevelStartingInfo(final int level, final int duration, final int score, final int health);
 
   void hideLevelStartingInfo();
@@ -30,4 +32,6 @@ public interface FallingWordsMVPView {
   void showFallingTimeCounter(final int count);
 
   void showResult(final boolean isWin, @NonNull final String rightTranslation);
+
+  void finish();
 }
