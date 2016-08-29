@@ -11,11 +11,18 @@ import com.google.auto.value.AutoValue;
 @AutoValue
 public abstract class LevelResult {
 
-  public static LevelResult create(final boolean isWin, final int score, @NonNull final String rightTranslation) {
-    return new AutoValue_LevelResult(isWin, score, rightTranslation);
+  public static LevelResult create(
+      final boolean isWin,
+      final boolean isGameOver,
+      final int score,
+      @NonNull final String rightTranslation
+  ) {
+    return new AutoValue_LevelResult(isWin, isGameOver, score, rightTranslation);
   }
 
   public abstract boolean isWin();
+
+  public abstract boolean isGameOver();
 
   public abstract int score();
 
