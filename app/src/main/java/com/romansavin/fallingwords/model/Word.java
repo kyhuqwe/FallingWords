@@ -3,6 +3,9 @@ package com.romansavin.fallingwords.model;
 import android.support.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Roman Savin
@@ -15,7 +18,11 @@ public abstract class Word {
     return new AutoValue_Word(word, translation);
   }
 
-  public abstract String word();
+  public static TypeAdapter<Word> typeAdapter(final Gson gson) {
+    return new AutoValue_Word.GsonTypeAdapter(gson);
+  }
 
-  public abstract String translation();
+  @SerializedName("text_eng") public abstract String word();
+
+  @SerializedName("text_spa") public abstract String translation();
 }
