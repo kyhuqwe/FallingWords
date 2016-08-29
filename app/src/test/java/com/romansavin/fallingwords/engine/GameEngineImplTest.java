@@ -123,6 +123,7 @@ public class GameEngineImplTest {
         levelInfoBeforeAnswer.level() + 1,
         levelInfoBeforeAnswer.duration() - 1,
         levelInfoBeforeAnswer.health(),
+        SCORE_LEVEL_STEP * levelInfoBeforeAnswer.level(),
         levelInfoBeforeAnswer.word(),
         levelInfoBeforeAnswer.assumedTranslation(),
         levelInfoBeforeAnswer.rightTranslation()
@@ -149,6 +150,7 @@ public class GameEngineImplTest {
         levelInfoBeforeAnswer.level(),
         levelInfoBeforeAnswer.duration(),
         levelInfoBeforeAnswer.health() - 1,
+        0,
         levelInfoBeforeAnswer.word(),
         levelInfoBeforeAnswer.assumedTranslation(),
         levelInfoBeforeAnswer.rightTranslation()
@@ -175,6 +177,7 @@ public class GameEngineImplTest {
         MAX_LEVEL + 1,
         MAX_DURATION_SECONDS - MAX_LEVEL - 1,
         MAX_HEALTH,
+        1500,
         lastLevelInfoBeforeAnswer.word(),
         lastLevelInfoBeforeAnswer.assumedTranslation(),
         lastLevelInfoBeforeAnswer.rightTranslation()
@@ -201,6 +204,7 @@ public class GameEngineImplTest {
         MIN_LEVEL,
         MAX_DURATION_SECONDS - MIN_LEVEL,
         MIN_HEALTH - 1,
+        0,
         lastLevelInfoBeforeAnswer.word(),
         lastLevelInfoBeforeAnswer.assumedTranslation(),
         lastLevelInfoBeforeAnswer.rightTranslation()

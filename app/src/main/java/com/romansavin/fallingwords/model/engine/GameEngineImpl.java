@@ -143,7 +143,7 @@ public class GameEngineImpl implements GameEngine {
       throw new IllegalStateException("Word is null");
     }
 
-    return LevelInfo.create(level, duration, health, sourceWord, assumedTranslation, rightTranslation);
+    return LevelInfo.create(level, duration, health, score, sourceWord, assumedTranslation, rightTranslation);
   }
 
   private boolean useRightTranslation() {

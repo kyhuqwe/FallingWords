@@ -15,11 +15,12 @@ public abstract class LevelInfo {
       final int level,
       final int duration,
       final int health,
+      final int score,
       @NonNull final String word,
       @NonNull final String assumedTranslation,
       @NonNull final String rightTranslation
   ) {
-    return new AutoValue_LevelInfo(level, duration, health, word, assumedTranslation, rightTranslation);
+    return new AutoValue_LevelInfo(level, duration, health, score, word, assumedTranslation, rightTranslation);
   }
 
   public abstract int level();
@@ -27,6 +28,8 @@ public abstract class LevelInfo {
   public abstract int duration();
 
   public abstract int health();
+
+  public abstract int score();
 
   public abstract String word();
 
