@@ -1,0 +1,53 @@
+plugins.apply('pmd')
+
+pmd {
+  toolVersion = '5.4.1'
+}
+
+task pmd(type: Pmd) {
+  ignoreFailures = false
+  ruleSetFiles = files("${project.rootDir}/analyzers_configs/pmd.xml")
+  ruleSets = []
+
+  source = fileTree('src/main/java')
+}
+
+plugins.apply('findbugs')
+
+task findbugs(type: FindBugs) {
+  ignoreFailures = false
+  effort = 'max'
+  reportLevel = 'low'
+
+  reports {
+    html.enabled = true
+    xml.enabled = false
+  }
+
+  classes = files("${project.projectDir}/build/intermediates/classes")
+  source = fileTree('src/main/java')
+
+  // If somebody has an idea how to make this work with support libraries -> open a PR please.
+  classpath = files()
+
+  excludeFilter = new File("${project.rootDir}/analyzers_configs/findbugs-filter.xml")
+}
+
+plugins.apply('checkstyle')
+
+checkstyle {
+  toolVersion = '6.16.1'
+}
+
+task checkstyle(type: Checkstyle) {
+  configFile rootProject.file('checkstyle.xml')
+  configFile file("${project.rootDir}/analyzers_configs/checkstyle.xml")
+
+  ignoreFailures false // Fail early.
+  showViolations true
+
+  source 'src'
+  include '**/*.java'
+
+  classpath = files()
+}
