@@ -45,7 +45,7 @@ android {
     warningsAsErrors true
     abortOnError true
 
-    disable 'GoogleAppIndexingWarning', 'AllowBackup'
+    disable 'GoogleAppIndexingWarning', 'AllowBackup', 'UnusedResources'
   }
 
   packagingOptions {

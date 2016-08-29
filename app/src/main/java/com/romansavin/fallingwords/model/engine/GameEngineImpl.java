@@ -63,7 +63,7 @@ public class GameEngineImpl implements GameEngine {
     health = MAX_HEALTH;
     duration = getDurationByLevel();
 
-    return LevelInfo.create(level, duration, health, score, "" , "", "");
+    return LevelInfo.create(level, duration, health, score, "", "", "");
   }
 
   @Override public void finishGame() {

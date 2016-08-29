@@ -41,7 +41,7 @@ public class GameBoardFragment extends Fragment {
 
   @Nullable private FallingWordsPresenter presenter;
 
-  private Unbinder unbinder;
+  @Nullable private Unbinder unbinder;
 
   public static GameBoardFragment newInstance(
       final int level,
@@ -83,7 +83,9 @@ public class GameBoardFragment extends Fragment {
 
   @Override public void onDestroyView() {
     super.onDestroyView();
-    unbinder.unbind();
+    if (unbinder != null) {
+      unbinder.unbind();
+    }
   }
 
   @OnClick(R.id.no_btn) void onNoClick() {

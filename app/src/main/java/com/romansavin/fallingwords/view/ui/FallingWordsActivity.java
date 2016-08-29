@@ -39,14 +39,14 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
 
   @BindViews({R.id.start_level_btn, R.id.finish_game_btn}) List<Button> levelInfoButtons;
 
-  private FallingWordsPresenter presenter;
+  @Nullable private FallingWordsPresenter presenter;
 
   @Nullable private GameBoardFragment currentGameBoardFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_falling_words);
 
     ButterKnife.bind(this);
     presenter = new FallingWordsPresenterImpl(
@@ -65,11 +65,15 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
   }
 
   @OnClick(R.id.finish_game_btn) void onFinishGameClick() {
-    presenter.finishGame();
+    if (presenter != null) {
+      presenter.finishGame();
+    }
   }
 
   @OnClick(R.id.start_level_btn) void onStartLevelClick() {
-    presenter.startLevel();
+    if (presenter != null) {
+      presenter.startLevel();
+    }
   }
 
   @Override public void showProgress() {
@@ -108,11 +112,13 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
       final int level, final int score, final int health,
       @NonNull final String word, @NonNull final String assumedTranslation
   ) {
-    currentGameBoardFragment = GameBoardFragment.newInstance(level, score, health, word, assumedTranslation);
-    currentGameBoardFragment.setPresenter(presenter);
-    getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, currentGameBoardFragment).commit();
+    if (presenter != null) {
+      currentGameBoardFragment = GameBoardFragment.newInstance(level, score, health, word, assumedTranslation);
+      currentGameBoardFragment.setPresenter(presenter);
+      getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, currentGameBoardFragment).commit();
 
-    fragmentContainer.setVisibility(VISIBLE);
+      fragmentContainer.setVisibility(VISIBLE);
+    }
   }
 
   @Override public void hideGameBoard() {
@@ -152,7 +158,7 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
     final AlertDialogFragment dialogFragment = AlertDialogFragment.newInstance(resultString);
     dialogFragment.setClickListener((dialog, which) -> {
       dialog.dismiss();
-      if (isGameOver) {
+      if (isGameOver && presenter != null) {
         presenter.finishGame();
       }
     });
