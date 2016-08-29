@@ -213,6 +213,21 @@ public class FallingWordsViewNullObjectTest {
     verify(view, never()).showResult(true, TRANSLATION);
   }
 
+  @Test public void showGameOverInfo_initializedWithView() {
+    initializedWithView.showGameOverInfo(0);
+    verify(view).showGameOverInfo(0);
+  }
+
+  @Test public void showGameOverInfo_initializedWithNull() {
+    initializedWithNull.showGameOverInfo(0);
+    verify(view, never()).showGameOverInfo(0);
+  }
+
+  @Test public void showGameOverInfo_initializedWithDefaultConstructor() {
+    initializedWithDefaultConstructor.showGameOverInfo(0);
+    verify(view, never()).showGameOverInfo(0);
+  }
+
   @Test public void finish_initializedWithView() {
     initializedWithView.finish();
     verify(view).finish();

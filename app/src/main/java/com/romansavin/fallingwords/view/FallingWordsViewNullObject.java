@@ -135,6 +135,15 @@ public class FallingWordsViewNullObject implements FallingWordsMVPView {
     }
   }
 
+  @Override public void showGameOverInfo(final int score) {
+    if (viewWeakRef != null) {
+      final FallingWordsMVPView view = viewWeakRef.get();
+      if (view != null) {
+        view.showGameOverInfo(score);
+      }
+    }
+  }
+
   @Override public void finish() {
     if (viewWeakRef != null) {
       final FallingWordsMVPView view = viewWeakRef.get();

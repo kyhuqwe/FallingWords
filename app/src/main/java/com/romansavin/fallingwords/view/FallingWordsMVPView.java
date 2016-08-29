@@ -33,5 +33,7 @@ public interface FallingWordsMVPView {
 
   void showResult(final boolean isWin, @NonNull final String rightTranslation);
 
+  void showGameOverInfo(final int score);
+
   void finish();
 }
