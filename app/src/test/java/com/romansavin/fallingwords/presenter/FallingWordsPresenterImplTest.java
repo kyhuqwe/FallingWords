@@ -153,6 +153,7 @@ public class FallingWordsPresenterImplTest {
     verify(gameEngine).answer(true);
     verify(view).showResult(false, false, MIN_SCORE, RIGHT_TRANSLATION);
     verify(view).showLevelStartingInfo(MIN_LEVEL, MAX_DURATION_SECONDS - MIN_LEVEL, MIN_SCORE, MAX_HEALTH);
+    verify(view).hideGameBoard();
   }
 
   @Test public void chooseAnswerNo() {
@@ -162,6 +163,7 @@ public class FallingWordsPresenterImplTest {
     verify(gameEngine).answer(false);
     verify(view).showResult(true, false, WIN_SCORE, RIGHT_TRANSLATION);
     verify(view).showLevelStartingInfo(MIN_LEVEL, MAX_DURATION_SECONDS - MIN_LEVEL, MIN_SCORE, MAX_HEALTH);
+    verify(view).hideGameBoard();
   }
 
   @Test public void chooseAnswerYes_gameOver() {

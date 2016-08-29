@@ -3,7 +3,6 @@ package com.romansavin.fallingwords.view.ui;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -110,13 +109,18 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
       @NonNull final String word, @NonNull final String assumedTranslation
   ) {
     currentGameBoardFragment = GameBoardFragment.newInstance(level, score, health, word, assumedTranslation);
-    showFragment(currentGameBoardFragment);
+    currentGameBoardFragment.setPresenter(presenter);
+    getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, currentGameBoardFragment).commit();
 
     fragmentContainer.setVisibility(VISIBLE);
   }
 
   @Override public void hideGameBoard() {
     fragmentContainer.setVisibility(GONE);
+    if (currentGameBoardFragment != null) {
+      getSupportFragmentManager().beginTransaction().remove(currentGameBoardFragment).commit();
+      currentGameBoardFragment = null;
+    }
   }
 
   @Override public void updateFallingWordPosition(final int dropPercentage) {
@@ -161,9 +165,5 @@ public class FallingWordsActivity extends AppCompatActivity implements FallingWo
 
   @NonNull private FallingWordsApplication getFallingWordsApplication() {
     return (FallingWordsApplication) getApplication();
-  }
-
-  private void showFragment(@NonNull final Fragment fragment) {
-    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
   }
 }

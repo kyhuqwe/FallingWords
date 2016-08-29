@@ -122,14 +122,14 @@ public class GameEngineImpl implements GameEngine {
   @NonNull @Override public Observable<Integer> getDropPercentageObservable() {
     final int maxStepsCount = duration * MS_IN_SECOND / UPDATE_DROP_PERCENTAGE_MS;
     final float dropVelocity = 100 / (float) maxStepsCount; // Velocity in Percentages per step
-    return interval(UPDATE_DROP_PERCENTAGE_MS, TimeUnit.MILLISECONDS)
+    return interval(0, UPDATE_DROP_PERCENTAGE_MS, TimeUnit.MILLISECONDS)
         .map(step -> step * dropVelocity)
         .map(Math::round)
         .take(maxStepsCount + 1);
   }
 
   @NonNull @Override public Observable<Integer> getTimeCounterObservable() {
-    return interval(1, TimeUnit.SECONDS)
+    return interval(0, 1, TimeUnit.SECONDS)
         .map(value -> duration - value.intValue())
         .take(duration + 1);
   }

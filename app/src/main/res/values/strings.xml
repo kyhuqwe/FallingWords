@@ -12,4 +12,10 @@
     <string name="finish_game_btn">Finish Game</string>
 
     <string name="level_info_fmt">Level: %1$d\nDuration: %2$d\nScore: %3$d\nHealth: %4$d</string>
+    <string name="no_btn">No</string>
+    <string name="yes_btn">Yes</string>
+
+    <string name="game_board_level_info_fmt">Level: %1$d; Score: %2$d; Health: %3$d</string>
+
+    <string name="time_left_fmt">Time: %d</string>
 </resources>

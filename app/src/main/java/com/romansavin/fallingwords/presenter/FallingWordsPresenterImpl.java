@@ -143,6 +143,7 @@ public class FallingWordsPresenterImpl implements FallingWordsPresenter {
     if (!result.isGameOver()) {
       final LevelInfo levelInfo = gameEngine.getLevelInfo();
       view.showLevelStartingInfo(levelInfo.level(), levelInfo.duration(), levelInfo.score(), levelInfo.health());
+      view.hideGameBoard();
     }
   }
 }
